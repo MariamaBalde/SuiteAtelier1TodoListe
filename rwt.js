@@ -4,8 +4,8 @@ class Todo extends React.Component {
         this.state = {
             input: "",
             todos: [],
-            editIndex: null,
-            editInput: ""
+            modifIndex: null,
+            modifInput: ""
         }
     }
 
@@ -30,22 +30,22 @@ class Todo extends React.Component {
                     <ul class="list-group" >
                         {this.state.todos.map((todo, index) => {
                             return <li key={index} class="list-group-item d-flex justify-content-between align-items-start">
-                                {this.state.editIndex === index ? (
+                                {this.state.modifIndex === index ? (
                                     <div className="ms-2 me-auto d-flex">
                                         <input type="text"
-                                            value={this.state.editInput}
+                                            value={this.state.modifInput}
                                             onChange={(e) => {
-                                                this.setState({ editInput: e.target.value })
+                                                this.setState({modifInput: e.target.value })
                                             }}
                                             className="form-control" />
                                         <button class="btn btn-sm btn-outline-success"
                                             onClick={() => {
                                                 const newTodos = [...this.state.todos];
-                                                newTodos[index] = this.state.editInput;
+                                                newTodos[index] = this.state.modifInput;
                                                 this.setState({
                                                     todos: newTodos,
-                                                    editIndex: null,
-                                                    editInput: ""
+                                                    modifIndex: null,
+                                                    modifInput: ""
                                                 })
                                             }}
                                         >Enregistrer</button>
@@ -58,8 +58,8 @@ class Todo extends React.Component {
                                 <i className="fa-solid fa-pen-to-square me-3"
                                     onClick={() => {
                                         this.setState({
-                                            editIndex: index,
-                                            editInput: this.state.todos[index]
+                                            modifIndex: index,
+                                            modifInput: this.state.todos[index]
                                         })
                                     }}
                                     style={{ color: "#FFD43B" }}>
